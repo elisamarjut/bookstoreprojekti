@@ -1,4 +1,4 @@
-package hhsof03.bookstore.domain;
+package hh.sof03.bookstore.domain;
 
 public class Book {
 
