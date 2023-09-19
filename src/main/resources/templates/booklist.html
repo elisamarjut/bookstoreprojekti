@@ -8,7 +8,22 @@
 
 <body>
     <h1>Books</h1>
-
+    <table>
+        <tbody>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Year</th>
+            </tr>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.author}">Author</td>
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.isbn}">ISBN</td>
+                <td th:text="${book.year}">Year</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>
