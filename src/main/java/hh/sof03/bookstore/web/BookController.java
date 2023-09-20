@@ -17,6 +17,11 @@ public class BookController {
     @Autowired
     private BookRepository repository;
 
+    @RequestMapping("index")
+    public String welcome() {
+        return "store";
+    }
+
     @RequestMapping("/booklist")
     public String listBooks(Model model) {
         model.addAttribute("books", repository.findAll());
