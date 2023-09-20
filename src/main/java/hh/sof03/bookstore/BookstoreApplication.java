@@ -19,18 +19,21 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demodata(BookRepository repository) {
+	public CommandLineRunner demodata(BookRepository bookRepository) {
 		return (args) -> {
 			log.info("save a few demo books");
 			Book b1 = new Book("Rautakolmio", "Leena Lehtolainen", "9789520429348", 2021, 7.80);
 			Book b2 = new Book("Ensimmäinen murhani", "Leena Lehtolainen", "9789520422301", 2020, 15.50);
 			Book b3 = new Book("Harmin paikka", "Leena Lehtolainen", "9789520422318", 2020, 7.90);
 
-			repository.save(b1);
-			repository.save(b2);
-			repository.save(b3);
+			bookRepository.save(b1);
+			bookRepository.save(b2);
+			bookRepository.save(b3);
 
 			log.info("fetch all books");
+			for (Book book : bookRepository.findAll()) {
+				log.info(book.toString());
+			}
 
 		};
 		// title, author, isbn, year, price
