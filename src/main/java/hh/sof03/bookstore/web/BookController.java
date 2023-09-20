@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class BookController {
 
     @Autowired
-    private BookRepository repository;
+    private BookRepository bookRepository;
 
     @RequestMapping("index")
     public String welcome() {
@@ -24,7 +24,7 @@ public class BookController {
 
     @RequestMapping("/booklist")
     public String listBooks(Model model) {
-        model.addAttribute("books", repository.findAll());
+        model.addAttribute("books", bookRepository.findAll());
         return "booklist";
     }
 
@@ -38,15 +38,22 @@ public class BookController {
     // Save new book
     @PostMapping("/save")
     public String save(Book book) {
-        repository.save(book);
+        bookRepository.save(book);
         return "redirect:booklist";
     }
 
     // Delete a book
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
-        repository.deleteById(bookId);
+        bookRepository.deleteById(bookId);
         return "redirect:../booklist";
+    }
+
+    // Edit book
+    @RequestMapping("/edit/{id}")
+    public String editBook(@PathVariable("id") Long bookId, Model model) {
+        model.addAttribute("book", bookRepository.findById(bookId));
+        return "editbook";
     }
 
 }
