@@ -36,6 +36,10 @@ public class BookController {
     }
 
     // Save new book
+    // kun save saa käsiteltäväkseen kirjan ilman id:tä, tapahtuu create
+    // ja kun saa kirjan id:llä, tapauhtuu update
+    // jatkossa kannattaa ehkä jakaa useampaan metodiin mm. validointia varten
+    // jos pitää samassa metodissa, tulee paljon ehdollisia haaroja
     @PostMapping("/save")
     public String save(Book book) {
         bookRepository.save(book);
