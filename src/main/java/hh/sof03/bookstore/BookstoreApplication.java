@@ -33,9 +33,9 @@ public class BookstoreApplication {
 			categoryRepository.save(c3);
 
 			log.info("Save a few books");
-			Book b1 = new Book("Ensimmäinen murhani", "Leena Lehtolainen", "9789520422301", 2020, 7.80);
-			Book b2 = new Book("The Fault in Our Stars", "John Green", "9780141345659", 2013, 10.80);
-			Book b3 = new Book("Teemestarin kirja", "Emmi Itäranta", "9789518519747", 2019, 20.80);
+			Book b1 = new Book("Ensimmäinen murhani", "Leena Lehtolainen", "9789520422301", 2020, 7.80, c1);
+			Book b2 = new Book("The Fault in Our Stars", "John Green", "9780141345659", 2013, 10.80, c2);
+			Book b3 = new Book("Teemestarin kirja", "Emmi Itäranta", "9789518519747", 2019, 20.80, c3);
 
 			bookRepository.save(b1);
 			bookRepository.save(b2);

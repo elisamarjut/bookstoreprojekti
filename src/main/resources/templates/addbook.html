@@ -5,7 +5,6 @@
     <title>Add book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2702/2702197.png">
-
 </head>
 
 <body>
@@ -25,6 +24,13 @@
         <div style="clear: both; display: block; height: 10px;"></div>
         <label for="year">Price</label>
         <input type="text" id="price" th:field="*{price}" class="form-control" />
+        <div style="clear: both; display: block; height: 10px;"></div>
+
+        <label for="categorylist">Category</label>
+        <select th:field="*{category}" name="categorylist" id="categorylist" class="form-control">
+            <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.name}">
+            </option>
+        </select>
         <div style="clear: both; display: block; height: 10px;"></div>
 
         <input type="submit" class="btn btn-primary" value="Save" />
