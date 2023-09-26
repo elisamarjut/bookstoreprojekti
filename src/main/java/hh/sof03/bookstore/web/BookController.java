@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -28,8 +29,8 @@ public class BookController {
         return "booklist";
     }
 
-    // Add new book
-    @RequestMapping("/add")
+    // Add a new book
+    @RequestMapping("/addbook")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
         return "addbook";
@@ -40,21 +41,21 @@ public class BookController {
     // ja kun saa kirjan id:llä, tapauhtuu update
     // jatkossa kannattaa ehkä jakaa useampaan metodiin mm. validointia varten
     // jos pitää samassa metodissa, tulee paljon ehdollisia haaroja
-    @PostMapping("/save")
-    public String save(Book book) {
+    @PostMapping("/savebook")
+    public String saveBook(Book book) {
         bookRepository.save(book);
         return "redirect:booklist";
     }
 
     // Delete a book
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deletebook/{id}")
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
         bookRepository.deleteById(bookId);
         return "redirect:../booklist";
     }
 
     // Edit book
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/editbook/{id}")
     public String editBook(@PathVariable("id") Long bookId, Model model) {
         model.addAttribute("book", bookRepository.findById(bookId));
         return "editbook";
