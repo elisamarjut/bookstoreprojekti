@@ -1,6 +1,7 @@
 package hh.sof03.bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,6 +55,7 @@ public class BookController {
 
     // Delete a book
     @GetMapping("/deletebook/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
         bookRepository.deleteById(bookId);
         return "redirect:../booklist";
@@ -65,6 +67,12 @@ public class BookController {
         model.addAttribute("book", bookRepository.findById(bookId));
         model.addAttribute("categories", categoryRepository.findAll());
         return "editbook";
+    }
+
+    // Login page
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
     }
 
 }
