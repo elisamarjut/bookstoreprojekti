@@ -38,7 +38,7 @@
                 <td th:text="${book.price}">Price</td>
                 <td th:text="${book.category!=null?book.category.name:''}">Category</td>
                 <td>
-                <td sec:authorize="hasRole('ADMIN')">
+                <td sec:authorize="hasAuthority('ADMIN')">
                     <a th:href="@{/deletebook/{id}(id=${book.bookId})}" class="btn btn-danger">Delete</a>
                 </td>
                 <td><a th:href="@{/editbook/{id}(id=${book.bookId})}" class="btn btn-warning">Edit</a></td>

@@ -11,6 +11,8 @@ import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
 import hh.sof03.bookstore.domain.Category;
 import hh.sof03.bookstore.domain.CategoryRepository;
+import hh.sof03.bookstore.domain.User;
+import hh.sof03.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -21,7 +23,8 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demodata(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner demodata(BookRepository bookRepository, CategoryRepository categoryRepository,
+			UserRepository userRepository) {
 		return (args) -> {
 			log.info("Save a few categories");
 			Category c1 = new Category("Crime");
@@ -50,6 +53,17 @@ public class BookstoreApplication {
 			for (Book book : bookRepository.findAll()) {
 				log.info(book.toString());
 			}
+
+			// Creating users: admin/admin, user/user, elisa/elisa
+			User user1 = new User("user", "$2a$10$7fr9uCy6IlMhzmVQUNZtaOWjuaMdWB56m.yswQw/1/NojLe4fLWsS",
+					"user@mail.com", "USER");
+			User user2 = new User("admin", "$2a$10$uuY8JpD4EwyvBh0GKDn1u.55msv3CPSIFWjH4pQo0YiGD6E8/8zr6",
+					"admin@mail.com", "ADMIN");
+			User user3 = new User("elisa", "$2a$10$t2mA/dDxeW6KWKVvV1zg/e/bKfLJ1V64zxo6lBXWwBXLhhxyNA4sG",
+					"elisa@mail.com", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
+			userRepository.save(user3);
 
 		};
 	}
